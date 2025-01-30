@@ -4,38 +4,14 @@ import { VitePlugin } from '@electron-forge/plugin-vite';
 import { FusesPlugin } from '@electron-forge/plugin-fuses';
 import { FuseV1Options, FuseVersion } from '@electron/fuses';
 
-import packageJSON from './package.json'
-
-const name = 'Blender Hub'
-const version = packageJSON.version
-
-const author = packageJSON.author.name
-const copyright = `Copyright (c) 2025 ${author}. All rights reserved.`
-
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    name,
-    appCopyright: copyright,
-    buildVersion: version,
-    appVersion: version,
-    win32metadata: {
-      CompanyName: author,
-      FileDescription: name,
-      ProductName: name
-    },
+    name: 'Blender Hub'
   },
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({
-      setupExe: `BlenderHubSetup-x64-${version}.exe`,
-      name: 'BlenderHub',
-      version,
-      authors: author,
-      owners: author,
-      copyright,
-      description: `${name} Setup`
-    })
+    new MakerSquirrel({})
   ],
   publishers: [
     {

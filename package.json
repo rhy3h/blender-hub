@@ -1,8 +1,8 @@
 {
-  "name": "blender-hub",
-  "productName": "blender-hub",
+  "name": "BlenderHub",
+  "productName": "Blender Hub",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Blender Hub Setup",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -40,6 +40,10 @@
   "author": {
     "name": "rhy3h",
     "email": "rhy3htw@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhy3h/blender-hub.git"
   },
   "license": "MIT",
   "dependencies": {
