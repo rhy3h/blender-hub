@@ -1,7 +1,7 @@
 {
   "name": "BlenderHub",
   "productName": "Blender Hub",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Blender Hub Setup",
   "main": ".vite/build/main.js",
   "scripts": {
