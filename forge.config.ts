@@ -36,6 +36,18 @@ const config: ForgeConfig = {
       description: `${name} Setup`
     })
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'rhy3h',
+          name: 'blender-hub'
+        },
+        prerelease: true
+      }
+    }
+  ],
   plugins: [
     new VitePlugin({
       // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
