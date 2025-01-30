@@ -29,6 +29,7 @@ const config: ForgeConfig = {
   makers: [
     new MakerSquirrel({
       setupExe: `BlenderHubSetup-x64-${version}.exe`,
+      name: 'BlenderHub',
       version,
       authors: author,
       owners: author,
