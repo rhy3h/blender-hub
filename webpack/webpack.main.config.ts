@@ -1,4 +1,5 @@
 import type { Configuration } from 'webpack';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 import { rules } from '../webpack/webpack.rules';
 import { plugins } from './webpack.plugins';
@@ -16,5 +17,6 @@ export const mainConfig: Configuration = {
   plugins,
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+    plugins: [new TsconfigPathsPlugin()]
   },
 };
