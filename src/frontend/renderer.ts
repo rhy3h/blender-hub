@@ -26,7 +26,7 @@
  * ```
  */
 
-import '@/frontend/index.css';
+import '@/frontend/styles/globals.css';
 
 // Import React app
 import '@/frontend/app';
