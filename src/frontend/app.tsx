@@ -2,11 +2,13 @@ import { createRoot } from 'react-dom/client';
 
 import Layout from '@/frontend/layouts/layout';
 
+import BlenderTablePage from '@/frontend/components/blender-table/page'
+
 const App = () => {
   return (
     <Layout>
       <div className="container mx-auto">
-        <h2 className="text-2xl font-bold mb-4">Welcome to Blender Hub</h2>
+        <BlenderTablePage />
       </div>
     </Layout>
   );
