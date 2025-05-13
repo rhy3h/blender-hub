@@ -16,6 +16,12 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "webpack/**/*", "forge.config.ts"],
+  "include": [
+    "src/**/*",
+    "webpack/**/*",
+    "forge.config.ts",
+    "tests/**/*",
+    "jest.config.js"
+  ],
   "exclude": ["node_modules"]
 }
