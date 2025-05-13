@@ -21,7 +21,9 @@
       {
         "devDependencies": [
           "webpack/**/*",
-          "forge.config.ts"
+          "forge.config.ts",
+          "tests/**/*",
+          "jest.config.js"
         ]
       }
     ],
