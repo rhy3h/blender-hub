@@ -1,8 +1,8 @@
 'use client';
 
-import { columns } from "./columns"
-import { DataTable } from "./data-table"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react';
+import { columns } from './columns';
+import { DataTable } from './data-table';
 
 async function getData(): Promise<BlenderInstaller[]> {
   const data = await window.Blender.fetchVersion();
@@ -24,5 +24,5 @@ export default function BlenderTablePage() {
     <div className="container mx-auto">
       <DataTable columns={columns} data={data} />
     </div>
-  )
+  );
 }

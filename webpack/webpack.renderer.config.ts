@@ -14,11 +14,12 @@ rules.push({
       options: {
         postcssOptions: {
           plugins: [
+            // eslint-disable-next-line global-require
             require('@tailwindcss/postcss'),
-          ]
-        }
-      }
-    }
+          ],
+        },
+      },
+    },
   ],
 });
 
@@ -29,6 +30,6 @@ export const rendererConfig: Configuration = {
   plugins,
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
-    plugins: [new TsconfigPathsPlugin()]
+    plugins: [new TsconfigPathsPlugin()],
   },
 };
