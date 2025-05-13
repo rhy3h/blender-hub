@@ -23,7 +23,7 @@
           "webpack/**/*",
           "forge.config.ts",
           "tests/**/*",
-          "jest.config.js"
+          "jest.config.ts"
         ]
       }
     ],
