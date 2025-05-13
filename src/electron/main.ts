@@ -1,3 +1,5 @@
+/* eslint-disable no-new */
+
 import { app, BrowserWindow } from 'electron';
 
 import MainWindow from '@/electron/window/MainWindow';
