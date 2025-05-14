@@ -23,7 +23,8 @@
           "webpack/**/*",
           "forge.config.ts",
           "tests/**/*",
-          "jest.config.ts"
+          "vitest/**/*",
+          "vitest.workspace.ts"
         ]
       }
     ],
