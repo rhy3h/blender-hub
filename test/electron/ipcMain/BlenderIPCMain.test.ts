@@ -3,31 +3,32 @@
 import {
   describe,
   expect,
-  jest,
+  vi,
   it,
+  Mock,
   beforeEach,
-} from '@jest/globals';
+} from 'vitest';
 
 import { ipcMain } from 'electron';
 
 import { FETCH_VERSION } from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
 import { BlenderIPCMain } from '@/electron/ipcMain/BlenderIPCMain';
 
-jest.mock('electron', () => ({
+vi.mock('electron', () => ({
   ipcMain: {
-    handle: jest.fn(),
+    handle: vi.fn(),
   },
 }));
 
 describe('BlenderIPCMain', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should register FETCH_VERSION handler with correct response', async () => {
     // Arrange
-    const handlerMock = jest.fn();
-    (ipcMain.handle as jest.Mock).mockImplementation((_event, callback) => {
+    const handlerMock = vi.fn();
+    (ipcMain.handle as Mock).mockImplementation((_event, callback) => {
       handlerMock.mockImplementation(callback as unknown as () => void);
     });
 
