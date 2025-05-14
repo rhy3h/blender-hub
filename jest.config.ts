@@ -1,7 +1,9 @@
+import type { Config } from 'jest';
+
 import { pathsToModuleNameMapper } from 'ts-jest';
 import { compilerOptions } from './tsconfig.json';
 
-export default {
+const config: Config = {
   testEnvironment: 'node',
   moduleNameMapper: pathsToModuleNameMapper(
     compilerOptions.paths || {},
@@ -11,3 +13,5 @@ export default {
     '^.+\.tsx?$': ['ts-jest', {}],
   },
 };
+
+export default config;
