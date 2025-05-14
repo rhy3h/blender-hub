@@ -22,7 +22,7 @@
         "devDependencies": [
           "webpack/**/*",
           "forge.config.ts",
-          "tests/**/*",
+          "test/**/*",
           "vitest/**/*",
           "vitest.workspace.ts"
         ]
