@@ -2,33 +2,49 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { Badge } from '@/frontend/components/ui/badge';
 
-export const columns: ColumnDef<BlenderInstaller>[] = [
+export const columns: ColumnDef<BlenderInfo>[] = [
   {
     accessorKey: 'version',
     header: 'Version',
   },
   {
-    accessorKey: 'uploadTime',
-    header: 'Upload Time',
-  },
-  {
-    accessorKey: 'status',
-    header: () => <div>Status</div>,
+    accessorKey: 'name',
+    header: 'Name',
     cell: ({ row }) => {
-      const status = row.getValue('status') as string;
-      const statusVariant = status === 'Installed' ? 'default' : 'secondary';
-      return <Badge variant={statusVariant}>{status}</Badge>;
+      const name = row.getValue('name') as string;
+      return <div>{name}</div>;
     },
   },
   {
-    id: 'actions',
+    accessorKey: 'modifiedDate',
+    header: 'Modified Date',
     cell: ({ row }) => {
-      const status = row.getValue('status') as string;
-
-      if (status === 'Installed') {
-        return <Badge>Uninstall</Badge>;
-      }
-      return <Badge>Install</Badge>;
+      const modifiedDate = row.getValue('modifiedDate') as string;
+      return <div>{modifiedDate}</div>;
+    },
+  },
+  {
+    accessorKey: 'size',
+    header: 'Size',
+    cell: ({ row }) => {
+      const size = row.getValue('size') as string;
+      return <div>{size}</div>;
+    },
+  },
+  {
+    accessorKey: 'os',
+    header: 'OS',
+    cell: ({ row }) => {
+      const os = row.getValue('os') as string;
+      return <Badge>{os}</Badge>;
+    },
+  },
+  {
+    accessorKey: 'arch',
+    header: 'Arch',
+    cell: ({ row }) => {
+      const arch = row.getValue('arch') as string;
+      return <Badge>{arch}</Badge>;
     },
   },
 ];

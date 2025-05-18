@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 
-async function getData(): Promise<BlenderInstaller[]> {
+async function getData(): Promise<BlenderInfo[]> {
   const data = await window.Blender.fetchVersion();
   return data;
 }
 
 export default function BlenderTablePage() {
-  const [data, setData] = useState<BlenderInstaller[]>([]);
+  const [data, setData] = useState<BlenderInfo[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
