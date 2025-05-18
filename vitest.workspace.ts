@@ -7,4 +7,7 @@ export default defineWorkspace([
   {
     extends: './vitest/vitest.react.config.ts',
   },
+  {
+    extends: './vitest/vitest.node.config.ts',
+  },
 ]);
