@@ -17,10 +17,14 @@ export function getBlenderInfo(info: string, href: string) {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const [_, time, size] = infoMatch;
 
-  const blenderInfo = {
+  const blenderInfo: BlenderInfo = {
     url: href,
     modifiedDate: time,
     size,
+
+    os: '',
+    arch: '',
+    isZip: false,
   };
 
   return blenderInfo;
