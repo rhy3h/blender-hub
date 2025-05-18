@@ -59,7 +59,8 @@ export async function scrapDownloadLinks(link: string) {
     const architecture = text.replace(fullname, '');
     const { ext } = path.parse(text);
 
-    const blenderInfo = getBlenderInfo($(element).next().text(), href);
+    const nextSibling = element.nextSibling as unknown as Node | null;
+    const blenderInfo = getBlenderInfo(nextSibling?.nodeValue?.trim(), href);
 
     if (!blenderInfo) {
       return;
