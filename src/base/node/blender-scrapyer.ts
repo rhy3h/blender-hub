@@ -4,7 +4,7 @@ import * as cheerio from 'cheerio';
 
 import semver from 'semver';
 
-export function getBlenderInfo(info: string, href: string) {
+export function getFileInfo(info: string) {
   const text = info.trim();
 
   const regex = /^([\d]{2}-[A-Za-z]{3}-\d{4} \d{2}:\d{2})\s+(\d+)$/;
@@ -17,17 +17,10 @@ export function getBlenderInfo(info: string, href: string) {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const [_, time, size] = infoMatch;
 
-  const blenderInfo: BlenderInfo = {
-    url: href,
-    modifiedDate: time,
+  return {
+    time,
     size,
-
-    os: '',
-    arch: '',
-    isZip: false,
   };
-
-  return blenderInfo;
 }
 
 export async function scrapDownloadLinks(link: string) {
@@ -39,7 +32,7 @@ export async function scrapDownloadLinks(link: string) {
 
   const B3D_LINK = /blender-(\d+\.\d+\.\d+)/;
 
-  const blenderReleaseMap = new Map<string, BlenderRelease>();
+  const blenderInfos: BlenderInfo[] = [];
 
   $('a').each((_, element) => {
     const href = $(element).attr('href');
@@ -53,87 +46,52 @@ export async function scrapDownloadLinks(link: string) {
 
     const [fullname, version] = match;
 
-    if (!blenderReleaseMap.get(version)) {
-      blenderReleaseMap.set(version, {
-        version,
-      });
-    }
-    const blenderRelease = blenderReleaseMap.get(version);
-
     const architecture = text.replace(fullname, '');
     const { ext } = path.parse(text);
 
     const nextSibling = element.nextSibling as unknown as Node | null;
-    const blenderInfo = getBlenderInfo(nextSibling?.nodeValue?.trim(), href);
+    const fileInfo = getFileInfo(nextSibling?.nodeValue?.trim());
 
-    if (!blenderInfo) {
+    if (!fileInfo) {
       return;
     }
 
-    if (ext === '.md5') {
-      blenderRelease.md5 = blenderInfo;
-    } else if (ext === '.sha256') {
-      blenderRelease.sha256 = blenderInfo;
-    } else {
-      const IS_WINDOWS = architecture.includes('windows');
-      const IS_MACOS = architecture.includes('macos');
-      const IS_LINUX = architecture.includes('linux');
+    const blenderInfo: BlenderInfo = {
+      version,
+      name: fullname,
+      ext,
+      url: href,
+      modifiedDate: fileInfo.time,
+      size: fileInfo.size,
 
-      if (IS_WINDOWS) {
-        const IS_X64 = architecture.includes('x64');
-        const IS_ARM = architecture.includes('arm64');
+      os: '',
+      arch: '',
+      isZip: false,
+    };
 
-        if (IS_X64) {
-          switch (ext) {
-            case '.msi':
-              blenderRelease.windowsX64Msi = blenderInfo;
-              break;
-            case '.msix':
-              blenderRelease.windowsX64Msix = blenderInfo;
-              break;
-            case '.exe':
-              blenderRelease.windowsX64Exe = blenderInfo;
-              break;
-            case '.zip':
-              blenderRelease.windowsX64Zip = blenderInfo;
-              break;
-            default:
-              break;
-          }
-        } else if (IS_ARM) {
-          switch (ext) {
-            case '.msi':
-              blenderRelease.windowsArmMsi = blenderInfo;
-              break;
-            case '.msix':
-              blenderRelease.windowsArmMsix = blenderInfo;
-              break;
-            case '.exe':
-              blenderRelease.windowsArmExe = blenderInfo;
-              break;
-            case '.zip':
-              blenderRelease.windowsArmZip = blenderInfo;
-              break;
-            default:
-              break;
-          }
-        }
-      } else if (IS_MACOS) {
-        const IS_X64 = architecture.includes('x64');
-        const IS_ARM = architecture.includes('arm64');
+    const IS_WINDOWS = architecture.includes('windows');
+    const IS_MACOS = architecture.includes('macos');
+    const IS_LINUX = architecture.includes('linux');
 
-        if (IS_X64) {
-          blenderRelease.macOsX64 = blenderInfo;
-        } else if (IS_ARM) {
-          blenderRelease.macOsArm = blenderInfo;
-        }
-      } else if (IS_LINUX) {
-        blenderRelease.linux = blenderInfo;
-      }
+    if (IS_WINDOWS) {
+      blenderInfo.os = 'Windows';
+      blenderInfo.arch = architecture.includes('arm64') ? 'arm' : 'x64';
+    } else if (IS_MACOS) {
+      blenderInfo.os = 'macOS';
+      blenderInfo.arch = architecture.includes('arm64') ? 'arm' : 'x64';
+    } else if (IS_LINUX) {
+      blenderInfo.os = 'Linux';
+      blenderInfo.arch = 'x64';
     }
+
+    if (ext === '.zip') {
+      blenderInfo.isZip = true;
+    }
+
+    blenderInfos.push(blenderInfo);
   });
 
-  return [...blenderReleaseMap.values()];
+  return blenderInfos;
 }
 
 export async function scrapStableReleases() {
@@ -171,12 +129,12 @@ export async function scrapStableReleases() {
     }
   });
 
-  const blenderReleases: BlenderRelease[] = [];
+  const blenderInfos: BlenderInfo[] = [];
   for (let i = 0; i < links.length; i += 1) {
     const link = links[i];
     const downloadLinks = await scrapDownloadLinks(link);
-    blenderReleases.push(...downloadLinks);
+    blenderInfos.push(...downloadLinks);
   }
 
-  return blenderReleases;
+  return blenderInfos;
 }
