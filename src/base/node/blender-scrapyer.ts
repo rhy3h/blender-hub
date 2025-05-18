@@ -9,6 +9,11 @@ export function getBlenderInfo(info: string, href: string) {
 
   const regex = /^([\d]{2}-[A-Za-z]{3}-\d{4} \d{2}:\d{2})\s+(\d+)$/;
   const infoMatch = text.match(regex);
+
+  if (!infoMatch) {
+    return null;
+  }
+
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const [_, time, size] = infoMatch;
 
@@ -38,6 +43,10 @@ export async function scrapDownloadLinks(link: string) {
 
     const match = text.match(B3D_LINK);
 
+    if (!match) {
+      return;
+    }
+
     const [fullname, version] = match;
 
     if (!blenderReleaseMap.get(version)) {
@@ -51,6 +60,10 @@ export async function scrapDownloadLinks(link: string) {
     const { ext } = path.parse(text);
 
     const blenderInfo = getBlenderInfo($(element).next().text(), href);
+
+    if (!blenderInfo) {
+      return;
+    }
 
     if (ext === '.md5') {
       blenderRelease.md5 = blenderInfo;
