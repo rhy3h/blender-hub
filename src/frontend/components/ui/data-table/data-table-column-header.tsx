@@ -1,6 +1,6 @@
 import { Column } from '@tanstack/react-table';
 import {
-  ArrowDown, ArrowUp, ChevronsUpDown, EyeOff,
+  ArrowDown, ArrowUp, ChevronsUpDown, EyeOff, XIcon,
 } from 'lucide-react';
 
 import { cn } from '@/frontend/lib/utils';
@@ -38,13 +38,9 @@ export function DataTableColumnHeader<TData, TValue>({
             className="-ml-3 h-8 data-[state=open]:bg-accent"
           >
             <span>{title}</span>
-            {column.getIsSorted() === 'desc' ? (
-              <ArrowDown />
-            ) : column.getIsSorted() === 'asc' ? (
-              <ArrowUp />
-            ) : (
-              <ChevronsUpDown />
-            )}
+            {column.getIsSorted() === 'desc' && <ArrowDown />}
+            {column.getIsSorted() === 'asc' && <ArrowUp />}
+            {!column.getIsSorted() && <ChevronsUpDown />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
@@ -55,6 +51,10 @@ export function DataTableColumnHeader<TData, TValue>({
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
             <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
             Desc
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => column.clearSorting()}>
+            <XIcon className="h-3.5 w-3.5 text-muted-foreground/70" />
+            None
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
