@@ -2,11 +2,9 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { Badge } from '@/frontend/components/ui/badge';
 
+import { DataTableColumnHeader } from '@/frontend/components/data-table/data-table-column-header';
+
 export const columns: ColumnDef<BlenderInfo>[] = [
-  {
-    accessorKey: 'version',
-    header: 'Version',
-  },
   {
     accessorKey: 'name',
     header: 'Name',
@@ -14,6 +12,12 @@ export const columns: ColumnDef<BlenderInfo>[] = [
       const name = row.getValue('name') as string;
       return <div>{name}</div>;
     },
+  },
+  {
+    accessorKey: 'version',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Version" />
+    ),
   },
   {
     accessorKey: 'modifiedDate',
@@ -38,6 +42,7 @@ export const columns: ColumnDef<BlenderInfo>[] = [
       const os = row.getValue('os') as string;
       return <Badge>{os}</Badge>;
     },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
     accessorKey: 'arch',
@@ -46,5 +51,6 @@ export const columns: ColumnDef<BlenderInfo>[] = [
       const arch = row.getValue('arch') as string;
       return <Badge>{arch}</Badge>;
     },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
 ];
