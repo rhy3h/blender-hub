@@ -4,9 +4,9 @@ import { X } from 'lucide-react';
 import { Button } from '@/frontend/components/ui/button';
 import { Input } from '@/frontend/components/ui/input';
 
-import { DataTableFacetedFilter } from '@/frontend/components/data-table/data-table-faceted-filter';
-import { DataTableViewOptions } from '@/frontend/components/data-table/data-table-view-options';
-import { FilterValue, FacetedFilters } from '@/frontend/components/data-table/data-table-types';
+import { DataTableFacetedFilter } from '@/frontend/components/ui/data-table/data-table-faceted-filter';
+import { DataTableViewOptions } from '@/frontend/components/ui/data-table/data-table-view-options';
+import { FilterValue, FacetedFilters } from '@/frontend/components/ui/data-table/data-table-types';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>

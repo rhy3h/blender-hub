@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { Badge } from '@/frontend/components/ui/badge';
 
-import { DataTableColumnHeader } from '@/frontend/components/data-table/data-table-column-header';
+import { DataTableColumnHeader } from '@/frontend/components/ui/data-table/data-table-column-header';
 
 export const columns: ColumnDef<BlenderInfo>[] = [
   {

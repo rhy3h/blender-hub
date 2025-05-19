@@ -22,7 +22,7 @@ import {
   PopoverTrigger,
 } from '@/frontend/components/ui/popover';
 
-import { IDataTableFacetedFilterOption } from '@/frontend/components/data-table/data-table-types';
+import { IDataTableFacetedFilterOption } from '@/frontend/components/ui/data-table/data-table-types';
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>

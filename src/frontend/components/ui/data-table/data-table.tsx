@@ -24,9 +24,9 @@ import {
   TableRow,
 } from '@/frontend/components/ui/table';
 
-import { DataTableToolbar } from '@/frontend/components/data-table/data-table-toolbar';
-import { DataTablePagination } from '@/frontend/components/data-table/data-table-pagination';
-import { FilterValue, FacetedFilters } from '@/frontend/components/data-table/data-table-types';
+import { DataTableToolbar } from '@/frontend/components/ui/data-table/data-table-toolbar';
+import { DataTablePagination } from '@/frontend/components/ui/data-table/data-table-pagination';
+import { FilterValue, FacetedFilters } from '@/frontend/components/ui/data-table/data-table-types';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

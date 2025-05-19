@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { columns } from '@/frontend/components/blender-table/columns';
 
-import { DataTable } from '@/frontend/components/data-table/data-table';
+import { DataTable } from '@/frontend/components/ui/data-table/data-table';
 
 const oses = [
   {
