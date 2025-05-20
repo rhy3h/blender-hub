@@ -44,6 +44,7 @@ export function DataTableToolbar<TData>({
             if (!column) return null;
             return (
               <DataTableFacetedFilter
+                key={facetedFilter.columnId}
                 column={column}
                 title={facetedFilter.label}
                 options={facetedFilter.options}
