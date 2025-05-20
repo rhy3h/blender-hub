@@ -29,10 +29,10 @@ export const columns: ColumnDef<BlenderInfo>[] = [
   },
   {
     accessorKey: 'size',
-    header: 'Size',
+    header: 'Size (MB)',
     cell: ({ row }) => {
-      const size = row.getValue('size') as string;
-      return <div>{size}</div>;
+      const size = parseInt(row.getValue('size'), 10);
+      return <div>{Math.round(size / (1024 * 1024))}</div>;
     },
   },
   {
