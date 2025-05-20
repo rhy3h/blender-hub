@@ -1,5 +1,5 @@
-type Architecture = 'x64' | 'x86' | 'arm' | '';
-type OS = 'Windows' | 'macOS' | 'Linux' | '';
+type Architecture = 'x64' | 'arm' | '';
+type OS = 'win32' | 'darwin' | 'linux' | '';
 
 interface BlenderInfo {
   version: string;

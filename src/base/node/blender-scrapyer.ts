@@ -1,4 +1,5 @@
 import path from 'node:path';
+import os from 'os';
 
 import * as cheerio from 'cheerio';
 
@@ -74,13 +75,13 @@ export async function scrapDownloadLinks(link: string) {
     const IS_LINUX = architecture.includes('linux');
 
     if (IS_WINDOWS) {
-      blenderInfo.os = 'Windows';
+      blenderInfo.os = 'win32';
       blenderInfo.arch = architecture.includes('arm64') ? 'arm' : 'x64';
     } else if (IS_MACOS) {
-      blenderInfo.os = 'macOS';
+      blenderInfo.os = 'darwin';
       blenderInfo.arch = architecture.includes('arm64') ? 'arm' : 'x64';
     } else if (IS_LINUX) {
-      blenderInfo.os = 'Linux';
+      blenderInfo.os = 'linux';
       blenderInfo.arch = 'x64';
     }
 
@@ -136,5 +137,12 @@ export async function scrapStableReleases() {
     blenderInfos.push(...downloadLinks);
   }
 
-  return blenderInfos;
+  const platform = os.platform();
+  const arch = os.arch();
+
+  const supportBlenderInfos = blenderInfos.filter(
+    (f) => f.os === platform && f.arch === arch && !f.isZip,
+  );
+
+  return supportBlenderInfos;
 }
