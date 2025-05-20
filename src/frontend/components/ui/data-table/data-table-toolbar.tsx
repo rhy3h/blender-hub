@@ -38,20 +38,18 @@ export function DataTableToolbar<TData>({
             />
           );
         })}
-        {
-          facetedFilters && facetedFilters.map((facetedFilter) => {
-            const column = table.getColumn(facetedFilter.columnId);
-            if (!column) return null;
-            return (
-              <DataTableFacetedFilter
-                key={facetedFilter.columnId}
-                column={column}
-                title={facetedFilter.label}
-                options={facetedFilter.options}
-              />
-            );
-          })
-        }
+        {facetedFilters && facetedFilters.map((facetedFilter) => {
+          const column = table.getColumn(facetedFilter.columnId);
+          if (!column) return null;
+          return (
+            <DataTableFacetedFilter
+              key={facetedFilter.columnId}
+              column={column}
+              title={facetedFilter.label}
+              options={facetedFilter.options}
+            />
+          );
+        })}
         {isFiltered && (
           <Button
             variant="ghost"
