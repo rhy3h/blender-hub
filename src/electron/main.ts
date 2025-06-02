@@ -2,6 +2,8 @@
 
 import { app, BrowserWindow } from 'electron';
 
+import electronDl from 'electron-dl';
+
 import MainWindow from '@/electron/window/MainWindow';
 
 import { BlenderIPCMain } from '@/electron/ipcMain/BlenderIPCMain';
@@ -12,13 +14,15 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+electronDl();
+
 const createWindow = (): void => {
   // Create the browser window.
-  new MainWindow();
+  const mainWindow = new MainWindow();
 
   // In this file you can include the rest of your app's specific main process
   // code. You can also put them in separate files and import them here.
-  new BlenderIPCMain();
+  new BlenderIPCMain(mainWindow);
 };
 
 // This method will be called when Electron has finished

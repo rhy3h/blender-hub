@@ -17,4 +17,5 @@ interface BlenderInfo {
 
 interface BlenderIPC {
   fetchVersion: () => Promise<BlenderInfo[]>;
+  downloadVersion: (url: string) => Promise<void>;
 }

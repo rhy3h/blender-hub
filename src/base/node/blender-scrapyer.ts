@@ -61,7 +61,7 @@ export async function scrapDownloadLinks(link: string) {
       version,
       name: fullname,
       ext,
-      url: href,
+      url: `${url}/${href}`,
       modifiedDate: fileInfo.time,
       size: fileInfo.size,
 
