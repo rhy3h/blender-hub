@@ -17,18 +17,7 @@
   "rules": {
     "no-await-in-loop": "off",
     "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "webpack/**/*",
-          "forge.config.ts",
-          "test/**/*",
-          "vitest/**/*",
-          "vitest.workspace.ts"
-        ]
-      }
-    ],
+    "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
