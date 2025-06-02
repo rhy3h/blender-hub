@@ -141,7 +141,14 @@ export async function scrapStableReleases() {
   const arch = os.arch();
 
   const supportBlenderInfos = blenderInfos.filter(
-    (f) => f.os === platform && f.arch === arch && !f.isZip,
+    (f) => {
+      const isMatchPlatform = f.os === platform;
+      const isMatchArch = f.arch === arch;
+      const isNotZip = !f.isZip;
+      const isWinMsi = platform !== 'win32' || f.ext === '.msi';
+
+      return isMatchPlatform && isMatchArch && isNotZip && isWinMsi;
+    },
   );
 
   return supportBlenderInfos;
