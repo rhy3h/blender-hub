@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 
-import { setupIpcMainHandleMock } from 'electron-mock/vitest';
+import { mockIpcMainHandle } from 'electron-mock/vitest';
 
-setupIpcMainHandleMock();
+mockIpcMainHandle();
 
 vi.mock('electron-dl', () => ({
   ipcMain: {
