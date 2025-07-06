@@ -27,7 +27,7 @@ describe('BlenderIPCMain', () => {
   });
 
   it('FETCH_VERSION', async () => {
-    const result = await blenderIPC.fetchVersion();
+    const result = await blenderIPC.FETCH_VERSION();
 
     expect(result).toEqual([
       {

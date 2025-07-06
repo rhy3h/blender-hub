@@ -5,7 +5,7 @@ import { columns } from '@/frontend/components/blender-table/columns';
 import { DataTable } from '@/frontend/components/ui/data-table/data-table';
 
 async function getData(): Promise<BlenderInfo[]> {
-  const data = await window.Blender.fetchVersion();
+  const data = await window.BLENDER.FETCH_VERSION();
   return data;
 }
 

@@ -76,7 +76,7 @@ export const columns: ColumnDef<BlenderInfo>[] = [
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => { window.Blender.downloadVersion(row.original.url); }}
+            onClick={() => { window.BLENDER.DOWNLOAD_VERSION(row.original.url); }}
           >
             Download
           </DropdownMenuItem>

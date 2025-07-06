@@ -5,4 +5,4 @@ import { contextBridge } from 'electron';
 import { blenderIPC } from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
 
 // Renderer Process to Main Process
-contextBridge.exposeInMainWorld('Blender', blenderIPC);
+contextBridge.exposeInMainWorld('BLENDER', blenderIPC);

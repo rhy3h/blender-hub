@@ -1,3 +1,3 @@
 interface Window {
-  Blender: BlenderIPC;
+  BLENDER: BlenderIPC;
 }
