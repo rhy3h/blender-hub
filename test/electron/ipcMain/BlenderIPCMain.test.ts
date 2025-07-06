@@ -8,18 +8,15 @@ import {
   it,
 } from 'vitest';
 
-import { FETCH_VERSION } from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
+import { blenderIPC } from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
 import { BlenderIPCMain } from '@/electron/ipcMain/BlenderIPCMain';
 
 import {
   electronVitestMock,
-  getHandle,
   resetIpcHandleMock,
 } from 'electron-mock/vitest';
 
 const mockWindow = electronVitestMock.BrowserWindow;
-const mockApp = electronVitestMock.app;
-const mockIpcMainInvokeEvent = electronVitestMock.IpcMainInvokeEvent;
 
 describe('BlenderIPCMain', () => {
   beforeAll(() => {
@@ -31,9 +28,7 @@ describe('BlenderIPCMain', () => {
   });
 
   it('FETCH_VERSION', async () => {
-    const handler = getHandle(FETCH_VERSION);
-
-    const result = await handler(mockIpcMainInvokeEvent);
+    const result = await blenderIPC.fetchVersion();
 
     expect(result).toEqual([
       {
