@@ -12,18 +12,13 @@ import {
 
 import { BlenderStore } from '@/electron/store/blender-store';
 
+import { isOver24HoursFromNow } from '@/base/common/utils/date-utils';
+
 import { scrapStableReleases } from '@/base/node/blender-scrapyer';
 
 export class BlenderIPCMain {
   constructor(mainWindow: BrowserWindow) {
     const blenderStore = new BlenderStore();
-
-    function isOver24HoursFromNow(isoString: string) {
-      const targetDate = new Date(isoString);
-      const now = new Date();
-      const diffMs = Math.abs(now.getTime() - targetDate.getTime());
-      return diffMs > 24 * 60 * 60 * 1000;
-    }
 
     ipcMain.handle(FETCH_VERSION, async (_event) => {
       const { lastUpdateDate, infos } = blenderStore.get();
