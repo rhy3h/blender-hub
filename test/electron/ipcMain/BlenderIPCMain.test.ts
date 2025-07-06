@@ -16,11 +16,10 @@ import {
   resetIpcHandleMock,
 } from 'electron-mock/vitest';
 
-const mockWindow = electronVitestMock.BrowserWindow;
-
 describe('BlenderIPCMain', () => {
   beforeAll(() => {
-    new BlenderIPCMain(mockWindow as unknown as Electron.BrowserWindow);
+    const mockWindow = electronVitestMock.BrowserWindow as unknown as Electron.BrowserWindow;
+    new BlenderIPCMain(mockWindow);
   });
 
   afterAll(() => {
