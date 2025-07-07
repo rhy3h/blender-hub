@@ -1,11 +1,13 @@
-import { vi } from 'vitest';
+import { beforeAll, vi } from 'vitest';
 
 import { mockIpcMainHandle } from 'electron-mock/vitest';
 
-mockIpcMainHandle();
+beforeAll(() => {
+  mockIpcMainHandle();
 
-vi.mock('electron-dl', () => ({
-  ipcMain: {
-    download: vi.fn(),
-  },
-}));
+  vi.mock('electron-dl', () => ({
+    ipcMain: {
+      download: vi.fn(),
+    },
+  }));
+});
