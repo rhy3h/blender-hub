@@ -10,6 +10,8 @@ import {
   DOWNLOAD_VERSION,
 } from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
 
+import { DOWNLOAD_ON_PROGRESS } from '@/electron/ipcInterface/rendererProcess/BlenderCallbackIPCInterface';
+
 import { BlenderStore } from '@/electron/store/blender-store';
 
 import { isOver24HoursFromNow } from '@/base/common/utils/date-utils';
@@ -38,8 +40,9 @@ export class BlenderIPCMain {
         mainWindow,
         url,
         {
+          onStarted: () => {},
           onProgress: (progress) => {
-            console.log(progress);
+            mainWindow.webContents.send(DOWNLOAD_ON_PROGRESS, url, progress.percent);
           },
         },
       );

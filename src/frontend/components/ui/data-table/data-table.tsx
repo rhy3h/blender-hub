@@ -4,6 +4,7 @@ import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
+  TableMeta,
   VisibilityState,
   flexRender,
   getCoreRowModel,

@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { ColumnDef } from '@tanstack/react-table';
 
 import { Badge } from '@/frontend/components/ui/badge';
@@ -13,6 +15,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/frontend/components/ui/dropdown-menu';
+
+import { useBlender } from '@/frontend/store/use-blender';
+
+export const ProgressBadge = memo(({ url } : { url: string }) => {
+  const progress = useBlender((s) => s.progressMap[url]);
+
+  return progress !== undefined ? (
+    <Badge>
+      {Math.round(progress * 100)}
+      %
+    </Badge>
+  ) : null;
+});
 
 export const columns: ColumnDef<BlenderInfo>[] = [
   {
@@ -62,6 +77,15 @@ export const columns: ColumnDef<BlenderInfo>[] = [
       return <Badge>{arch}</Badge>;
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
+  },
+  {
+    id: 'progress',
+    header: 'Progress',
+    cell: ({ row }) => {
+      const { url } = row.original;
+
+      return <ProgressBadge url={url} />;
+    },
   },
   {
     id: 'actions',

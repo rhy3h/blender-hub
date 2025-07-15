@@ -3,6 +3,18 @@
 import { contextBridge } from 'electron';
 
 import { blenderIPC } from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
+import { blenderCallbackIPC } from '@/electron/ipcInterface/rendererProcess/BlenderCallbackIPCInterface';
 
+const rendererListeners: { apiKey: string; api: any }[] = [
 // Renderer Process to Main Process
-contextBridge.exposeInMainWorld('BLENDER', blenderIPC);
+  { apiKey: 'BLENDER', api: blenderIPC },
+
+  // Main Process to Renderer Process
+  { apiKey: 'BLENDER_CALLBACK', api: blenderCallbackIPC },
+];
+
+for (let i = 0; i < rendererListeners.length; i += 1) {
+  const { apiKey, api } = rendererListeners[i];
+
+  contextBridge.exposeInMainWorld(apiKey, api);
+}
