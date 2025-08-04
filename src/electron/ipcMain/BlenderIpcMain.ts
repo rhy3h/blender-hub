@@ -8,9 +8,9 @@ import { download } from 'electron-dl';
 import {
   FETCH_VERSION,
   DOWNLOAD_VERSION,
-} from '@/electron/ipcInterface/mainProcess/BlenderIPCInterface';
+} from '@/electron/ipcInterface/mainProcess/BlenderIpcInterface';
 
-import { DOWNLOAD_ON_PROGRESS } from '@/electron/ipcInterface/rendererProcess/BlenderCallbackIPCInterface';
+import { DOWNLOAD_ON_PROGRESS } from '@/electron/ipcInterface/rendererProcess/BlenderCallbackIpcInterface';
 
 import { BlenderStore } from '@/electron/store/blender-store';
 
@@ -18,7 +18,7 @@ import { isOver24HoursFromNow } from '@/base/common/utils/date-utils';
 
 import { scrapStableReleases } from '@/base/node/blender-scrapyer';
 
-export class BlenderIPCMain {
+export class BlenderIpcMain {
   constructor(mainWindow: BrowserWindow) {
     const blenderStore = new BlenderStore();
 

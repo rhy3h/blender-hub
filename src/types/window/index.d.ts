@@ -1,5 +1,5 @@
 interface Window {
-  BLENDER: BlenderIPC;
+  BLENDER: BlenderIpc;
 
-  BLENDER_CALLBACK: BlenderCallbackIPC;
+  BLENDER_CALLBACK: BlenderCallbackIpc;
 }

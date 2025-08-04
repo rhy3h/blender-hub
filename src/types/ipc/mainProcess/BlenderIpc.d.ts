@@ -15,7 +15,7 @@ interface BlenderInfo {
   isZip: boolean;
 }
 
-interface BlenderIPC {
+interface BlenderIpc {
   FETCH_VERSION: () => Promise<BlenderInfo[]>;
   DOWNLOAD_VERSION: (url: string) => Promise<void>;
 }

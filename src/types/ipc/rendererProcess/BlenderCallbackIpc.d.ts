@@ -1,4 +1,4 @@
-interface BlenderCallbackIPC {
+interface BlenderCallbackIpc {
   DOWNLOAD_ON_PROGRESS: (
     callback: (
       event: Electron.IpcRendererEvent,
