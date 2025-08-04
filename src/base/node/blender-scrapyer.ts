@@ -76,10 +76,10 @@ export async function scrapDownloadLinks(link: string) {
 
     if (IS_WINDOWS) {
       blenderInfo.os = 'win32';
-      blenderInfo.arch = architecture.includes('arm64') ? 'arm' : 'x64';
+      blenderInfo.arch = architecture.includes('arm64') ? 'arm64' : 'x64';
     } else if (IS_MACOS) {
       blenderInfo.os = 'darwin';
-      blenderInfo.arch = architecture.includes('arm64') ? 'arm' : 'x64';
+      blenderInfo.arch = architecture.includes('arm64') ? 'arm64' : 'x64';
     } else if (IS_LINUX) {
       blenderInfo.os = 'linux';
       blenderInfo.arch = 'x64';

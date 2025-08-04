@@ -1,4 +1,4 @@
-type Architecture = 'x64' | 'arm' | '';
+type Architecture = 'x64' | 'arm64' | '';
 type OS = 'win32' | 'darwin' | 'linux' | '';
 
 interface BlenderInfo {
