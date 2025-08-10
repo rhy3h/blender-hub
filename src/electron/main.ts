@@ -1,6 +1,6 @@
 /* eslint-disable no-new */
 
-import { app, BrowserWindow } from 'electron';
+import { app } from 'electron';
 
 import electronDl from 'electron-dl';
 
